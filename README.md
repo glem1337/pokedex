@@ -12,6 +12,7 @@
 - redux-thunk;
 - axios;
 - react-sticky-box;
+- node-sass;
 
 ## Задание
 

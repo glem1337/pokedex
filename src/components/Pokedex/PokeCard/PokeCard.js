@@ -1,23 +1,13 @@
 import React from 'react';
-import {
-    Card,
-    CardActionArea,
-    CardMedia,
-    CardContent,
-    CardActions,
-    Typography,
-    Chip,
-    Grow,
-} from '@material-ui/core';
+import { Card, CardActionArea, CardMedia, CardContent, Typography, Grow } from '@material-ui/core';
 import Placeholder from '../../../assets/logo/logo.svg';
-import { style } from '../../../theme/style';
 import { capitalizeFirstLetter } from '../../../utils/utils';
+import PokeTypes from '../PokeTypes/PokeTypes';
 
 const PokeCard = ({ pokemon, fetchPokemon }) => {
-    const classes = style();
     return (
         <Grow in>
-            <Card>
+            <Card className="poke-card">
                 <CardActionArea
                     onClick={() => {
                         fetchPokemon(pokemon.name);
@@ -39,15 +29,7 @@ const PokeCard = ({ pokemon, fetchPokemon }) => {
                         </Typography>
                     </CardContent>
                 </CardActionArea>
-                <CardActions>
-                    {pokemon.types.map((item) => (
-                        <Chip
-                            key={`item-type-${item.type.name}`}
-                            className={classes[item.type.name]}
-                            label={capitalizeFirstLetter(item.type.name)}
-                        />
-                    ))}
-                </CardActions>
+                <PokeTypes types={pokemon.types} />
             </Card>
         </Grow>
     );

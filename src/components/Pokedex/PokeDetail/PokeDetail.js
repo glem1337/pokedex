@@ -1,9 +1,9 @@
 import React from 'react';
-import { Card, CardMedia, CardContent, CardActions, Typography, Chip } from '@material-ui/core';
+import { Card, CardMedia, CardContent, Typography } from '@material-ui/core';
 import Placeholder from '../../../assets/logo/logo.svg';
 import { capitalizeFirstLetter } from '../../../utils/utils';
-import { style } from '../../../theme/style';
 import TableData from '../../TableData/TableData';
+import PokeTypes from '../PokeTypes/PokeTypes';
 
 function createData(name, value) {
     return { name, value };
@@ -14,7 +14,6 @@ const PokeDetail = ({ pokemon }) => {
     const filler = '000';
     const pokemon_id = filler.substring(0, filler.length - id_string.length) + id_string;
     const stats = Object.values(pokemon.stats);
-    const classes = style();
     const tableRows = stats.map((stat) => {
         return createData(stat.stat.name, stat.base_stat);
     });
@@ -38,15 +37,7 @@ const PokeDetail = ({ pokemon }) => {
                 </Typography>
                 <TableData rows={tableRows} />
             </CardContent>
-            <CardActions>
-                {pokemon.types.map((item) => (
-                    <Chip
-                        key={`item-type-${item.type.name}`}
-                        className={classes[item.type.name]}
-                        label={capitalizeFirstLetter(item.type.name)}
-                    />
-                ))}
-            </CardActions>
+            <PokeTypes types={pokemon.types} />
         </Card>
     );
 };
