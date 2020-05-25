@@ -1,0 +1,4 @@
+export const REQUEST = 'POKE_LIST/REQUEST';
+export const SUCCESS = 'POKE_LIST/SUCCESS';
+export const FAILURE = 'POKE_LIST/FAILURE';
+export const SET_NEXT_URL = 'POKE_LIST/SET_NEXT_URL';
