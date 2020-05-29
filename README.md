@@ -31,9 +31,9 @@ Regarding API:
 
 You can find out more information from the docs
 
-Bonus points for implementing (not done yet):
+Bonus points for implementing (not all done yet):
 1. ~~Adaptive styling (able to view this on all screen widths)~~
-2. ~~Filter visible pokemons by type~~
+2. Filter visible pokemons by type
 
 For this task you can use any css/js library/framework.
 

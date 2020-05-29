@@ -7,7 +7,7 @@ const instance = axios.create({
 export class PokeAPI {
     static getPokemonsList = async (offset, limit) => {
         try {
-            const response = await instance.get(`pokemon/?offset=${offset}&limit=${limit}`);
+            const response = await instance.get(`pokemon/?offset=${offset}&limit=${limit}/`);
             if (response.status === 200) {
                 return response.data;
             }
@@ -25,6 +25,18 @@ export class PokeAPI {
             }
         } catch (e) {
             console.error('PokeAPI.getPokemonByName() error: ', e);
+            throw new Error(e.message);
+        }
+    };
+
+    static getPokemonTypes = async () => {
+        try {
+            const response = await instance.get(`type/`);
+            if (response.status === 200) {
+                return response.data;
+            }
+        } catch (e) {
+            console.error('PokeAPI.getPokemonTypes() error: ', e);
             throw new Error(e.message);
         }
     };

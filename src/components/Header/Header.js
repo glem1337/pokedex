@@ -5,13 +5,17 @@ import LinearProgress from '@material-ui/core/LinearProgress/LinearProgress';
 import { useSelector } from 'react-redux';
 import pokeListSelectors from '../../redux/PokeList/selectors';
 import pokeDetailSelectors from '../../redux/PokeDetail/selectors';
-import './Header.scss'
+import TypesFilter from '../TypesFilter/TypesFilter';
+import './Header.scss';
+
+const mapState = (state) => ({
+    listLoading: pokeListSelectors.getLoading(state),
+    detailLoading: pokeDetailSelectors.getLoading(state),
+});
 
 const Header = () => {
-    const { listLoading, detailLoading } = useSelector((state) => ({
-        listLoading: pokeListSelectors.getLoading(state),
-        detailLoading: pokeDetailSelectors.getLoading(state),
-    }));
+    const { listLoading, detailLoading } = useSelector(mapState);
+
     return (
         <AppBar className="header" position="sticky">
             {(listLoading || detailLoading) && (
@@ -26,6 +30,9 @@ const Header = () => {
                             </Link>
                         </Box>
                         <Typography variant="h6">Pokedex</Typography>
+                        <Box ml="auto">
+                            <TypesFilter />
+                        </Box>
                     </Box>
                 </Toolbar>
             </Container>
