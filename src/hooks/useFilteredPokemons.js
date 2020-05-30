@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import pokeListSelectors from '../redux/PokeList/selectors';
 
+// TODO сделать возможность фильтрации по множеству типов
 export const useFilteredPokemons = (pokemonType) => {
     const [filteredPokemons, setFilteredPokemons] = useState([]);
     const pokemons = useSelector((state) => pokeListSelectors.getList(state));

@@ -5,16 +5,19 @@ import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import store from './store/store';
 import { ThemeProvider, CssBaseline } from '@material-ui/core';
-import {theme} from "./theme/theme";
+import { theme } from './theme/theme';
+import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.render(
     <React.StrictMode>
-        <Provider store={store}>
-            <CssBaseline />
-            <ThemeProvider theme={theme}>
-                <App />
-            </ThemeProvider>
-        </Provider>
+        <BrowserRouter>
+            <Provider store={store}>
+                <CssBaseline />
+                <ThemeProvider theme={theme}>
+                    <App />
+                </ThemeProvider>
+            </Provider>
+        </BrowserRouter>
     </React.StrictMode>,
     document.getElementById('root')
 );

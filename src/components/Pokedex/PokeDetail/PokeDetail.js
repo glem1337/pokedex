@@ -1,9 +1,10 @@
 import React from 'react';
-import { Card, CardMedia, CardContent, Typography } from '@material-ui/core';
+import { Card, CardMedia, CardContent, Typography, Box, Button } from '@material-ui/core';
 import Placeholder from '../../../assets/logo/logo.svg';
 import { capitalizeFirstLetter } from '../../../utils/utils';
 import TableData from '../../TableData/TableData';
 import PokeTypes from '../PokeTypes/PokeTypes';
+import { Link } from 'react-router-dom';
 
 function createData(name, value) {
     return { name, value };
@@ -31,13 +32,23 @@ const PokeDetail = ({ pokemon }) => {
                     e.target.src = Placeholder;
                 }}
             />
+            <PokeTypes types={pokemon.types} />
             <CardContent>
                 <Typography gutterBottom variant="h4" component="h2">
                     {capitalizeFirstLetter(pokemon.name)} #{pokemon_id}
                 </Typography>
                 <TableData rows={tableRows} />
+                <Box mt={2}>
+                    <Button
+                        component={Link}
+                        variant="outlined"
+                        to={`${pokemon.name}/`}
+                        color="secondary"
+                    >
+                        Detail Info
+                    </Button>
+                </Box>
             </CardContent>
-            <PokeTypes types={pokemon.types} />
         </Card>
     );
 };

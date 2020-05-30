@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Grid, Box, Container, Button, Grow } from '@material-ui/core';
 import PokeList from './PokeList/PokeList';
@@ -6,12 +6,11 @@ import PokeDetail from './PokeDetail/PokeDetail';
 import pokeListSelectors from '../../redux/PokeList/selectors';
 import pokeDetailSelectors from '../../redux/PokeDetail/selectors';
 import pokeTypesSelectors from '../../redux/PokeTypes/selectors';
-import { fetchPokemonsList } from '../../redux/PokeList/operations';
 import StickyBox from 'react-sticky-box/dist/esnext';
 import { fetchPokemonByName } from '../../redux/PokeDetail/operations';
 import Alert from '@material-ui/lab/Alert';
 import { useFilteredPokemons } from '../../hooks/useFilteredPokemons';
-import { setSelectedType } from '../../redux/PokeTypes/actions';
+import { useFetchPokemonsCallback } from '../../hooks/useFetchPokemonsCallback';
 
 const mapState = (state) => ({
     pokemons: pokeListSelectors.getList(state),
@@ -35,22 +34,24 @@ const Pokedex = () => {
         selectedType,
     } = useSelector(mapState);
 
-    const fetchPokemons = useCallback(() => {
-        dispatch(fetchPokemonsList(pokemons.length, 12));
-        dispatch(setSelectedType('All'));
-    }, [pokemons.length]);
-
     const fetchPokemon = (name) => {
         dispatch(fetchPokemonByName(name));
     };
 
+    const [length] = useState(pokemons.length);
+    const fetchPokemons = useFetchPokemonsCallback(pokemons.length);
     const filteredPokemons = useFilteredPokemons(selectedType);
 
     useEffect(() => {
-        fetchPokemons();
-    }, []);
+        if (length === 0) {
+            fetchPokemons();
+        }
+    }, [length]);
 
-    // TODO Инкапусулировать данные для списка покемонов и для детального просмотра
+    /* TODO
+     *   - Инкапусулировать данные для списка покемонов и для детального просмотра
+     *   - выводить ошибку "No pokemons by type TYPE" в фиксированной области
+     * */
     return (
         <Box mt={5}>
             <Container maxWidth="lg">
