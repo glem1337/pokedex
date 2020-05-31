@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Card, CardActionArea, CardMedia, CardContent, Typography, Grow } from '@material-ui/core';
 import Placeholder from '../../../assets/logo/logo.svg';
 import { capitalizeFirstLetter } from '../../../utils/utils';
@@ -34,4 +35,10 @@ const PokeCard = ({ pokemon, fetchPokemon }) => {
         </Grow>
     );
 };
+
+PokeCard.propTypes = {
+    pokemon: PropTypes.object.isRequired,
+    fetchPokemon: PropTypes.func.isRequired,
+};
+
 export default PokeCard;

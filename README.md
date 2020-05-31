@@ -13,6 +13,7 @@
 - axios;
 - react-sticky-box;
 - node-sass;
+- prop-types;
 
 ## Задание
 

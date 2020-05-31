@@ -1,6 +1,7 @@
 import React from 'react';
 import { Paper, Table, TableBody, TableCell, TableContainer, TableRow } from '@material-ui/core';
 import { capitalizeFirstLetter } from '../../utils/utils';
+import PropTypes from 'prop-types';
 
 const TableData = ({ rows }) => {
     return (
@@ -20,4 +21,9 @@ const TableData = ({ rows }) => {
         </TableContainer>
     );
 };
+
+TableData.propTypes = {
+    rows: PropTypes.array.isRequired,
+};
+
 export default TableData;

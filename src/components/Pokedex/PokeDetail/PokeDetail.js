@@ -5,6 +5,7 @@ import { capitalizeFirstLetter } from '../../../utils/utils';
 import TableData from '../../TableData/TableData';
 import PokeTypes from '../PokeTypes/PokeTypes';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 function createData(name, value) {
     return { name, value };
@@ -52,4 +53,9 @@ const PokeDetail = ({ pokemon }) => {
         </Card>
     );
 };
+
+PokeDetail.propTypes = {
+    pokemon: PropTypes.object.isRequired,
+};
+
 export default PokeDetail;
