@@ -27,7 +27,7 @@ const TypesFilter = () => {
 
     useEffect(() => {
         dispatch(fetchPokemonTypes());
-    }, []);
+    }, [dispatch]);
 
     return (
         <React.Fragment>

@@ -17,7 +17,7 @@ export const useFilteredPokemons = (pokemonType) => {
         return () => {
             setFilteredPokemons([]);
         };
-    }, [pokemonType]);
+    }, [pokemonType, pokemons]);
 
     return filteredPokemons;
 };
